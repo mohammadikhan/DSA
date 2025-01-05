@@ -1,4 +1,4 @@
-# Implementing Prirotiy Queue
+# Implementing Prirotiy Queue (using an unsorted list)
 
 class PriorityQueue(object):
 
