@@ -34,6 +34,20 @@ class Node:
         self.postOrderTraversal(node.right)
         print(node.data, end=" ")
 
+    def levelOrderTraversal(self, root):
+
+        if root is None:
+            return
+        
+        queue = [root]
+        while queue:
+            node = queue.pop(0)
+            print(node.data, end=" ")
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+
 
 if __name__=="__main__":
 
@@ -55,3 +69,5 @@ if __name__=="__main__":
     first.preOrderTraversal(first)
     print("\nPost-Order Travesal: ", end="")
     first.postOrderTraversal(first)
+    print("\nLevel-Order Travesal: ", end="")
+    first.levelOrderTraversal(first)
