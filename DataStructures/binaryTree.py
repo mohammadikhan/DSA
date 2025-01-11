@@ -1,5 +1,4 @@
 # Implementation of Binary Tree
-
 class Node:
 
     def __init__(self, data):
@@ -63,11 +62,15 @@ if __name__=="__main__":
     second.left = fourth
 
     # Call In-Order, Pre-Order and Post-Order traversal on the binaray tree constructred above
+    print("\nDepth First Search Traversal Methods: ")
     print("\nIn-Order Travesal: ", end="")
     first.inOrderTraversal(first)
     print("\nPre-Order Traversal: ", end="")
     first.preOrderTraversal(first)
     print("\nPost-Order Travesal: ", end="")
     first.postOrderTraversal(first)
+
+    print()
+    print("\nBreadth First Search Traversal: ")
     print("\nLevel-Order Travesal: ", end="")
     first.levelOrderTraversal(first)
