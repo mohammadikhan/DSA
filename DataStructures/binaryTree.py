@@ -38,12 +38,16 @@ class Node:
         if root is None:
             return
         
+        # Create a queue, which initially contains the root node (since we are going by level)
         queue = [root]
         while queue:
+            # Store the first element of the queue in a variable which holds the node and print its value
             node = queue.pop(0)
             print(node.data, end=" ")
+            # If the node has a left child, add it to the queue and repeat the process
             if node.left:
                 queue.append(node.left)
+            # If the node has a right child, add it to the queue and repeat the prcoess
             if node.right:
                 queue.append(node.right)
 
