@@ -51,6 +51,38 @@ class Node:
             if node.right:
                 queue.append(node.right)
 
+    # Inserting in a new node to a Binary Tree
+    def insertion(self, root, value):
+
+        # If the tree is empty, create the new node as the root
+        if root is None:
+            root = Node(value)
+            return
+        
+        # Otherwise, do a level-order traversal until we find a place in the tree where a node points to NULL
+        # Done using a queue, with the root initially in the queue
+        queue = [root]
+        while queue:
+
+            # Store the node in a variable which will be used for the checking of null values
+            temp = queue.pop(0)
+
+            # If a nodes left child is not null, add the node to the queue
+            # Otherwise insert the new node at that position and return the root
+            if temp.left:
+                queue.append(temp.left)
+            else:
+                temp.left = Node(value)
+                return root        
+            
+            # If a nodes right child is not null, add the node to the queue
+            # Otherwise insert the new node at that position and return the root
+            if temp.right:
+                queue.append(temp.right)
+            else:
+                temp.right = Node(value)
+                return root
+        
 
 if __name__=="__main__":
 
@@ -67,14 +99,26 @@ if __name__=="__main__":
 
     # Call In-Order, Pre-Order and Post-Order traversal on the binaray tree constructred above
     print("\nDepth First Search Traversal Methods: ")
-    print("\nIn-Order Travesal: ", end="")
+    print("\nIn-Order Traversal: ", end="")
     first.inOrderTraversal(first)
     print("\nPre-Order Traversal: ", end="")
     first.preOrderTraversal(first)
-    print("\nPost-Order Travesal: ", end="")
+    print("\nPost-Order Traversal: ", end="")
     first.postOrderTraversal(first)
 
     print()
     print("\nBreadth First Search Traversal: ")
-    print("\nLevel-Order Travesal: ", end="")
+    print("\nLevel-Order Traversal: ", end="")
+    first.levelOrderTraversal(first)
+
+    # Performing Insertion on the binary tree by adding the value 5
+    first.insertion(first, 5)
+    print("\n\nAfter Insertion: ")
+    print("\nIn-Order Traversal after insertion: ", end="")
+    first.inOrderTraversal(first)
+    print("\nPre-Order Traversal after insertion: ", end="")
+    first.preOrderTraversal(first)
+    print("\nPost-Order Traversal after insertion: ", end="")
+    first.postOrderTraversal(first)
+    print("\nLevel-Order Traversal after insertion: ", end="")
     first.levelOrderTraversal(first)
