@@ -82,7 +82,23 @@ class Node:
             else:
                 temp.right = Node(value)
                 return root
+    
+    # Search for a node in a binary tree (DFS Implementation)
+    def search(self, root, value):
+
+        # Handle base case if the node is null (or tree is empty) return false
+        if root is None:
+            return False
         
+        # If the nodes value is equal to the value we are searching for, return true
+        if root.data == value:
+            return True
+        
+        # Recursively call the function on the left and right subtrees
+        left = self.search(root.left, value)
+        right = self.search(root.right, value)
+
+        return left or right
 
 if __name__=="__main__":
 
@@ -122,3 +138,7 @@ if __name__=="__main__":
     first.postOrderTraversal(first)
     print("\nLevel-Order Traversal after insertion: ", end="")
     first.levelOrderTraversal(first)
+
+    # Searching for 2 and 6 in the binary tree
+    print("\n\nSearching for 2 in the Binary Tree: ", first.search(first, 2))
+    print("Searching for 6 in the Binary Tree: ", first.search(first, 6))
