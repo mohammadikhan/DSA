@@ -56,6 +56,7 @@ class Node:
                 queue.append(node.right)
 
 
+    # Searching for node in a BST
     def search(self, root, value):
         
         # If the tree is empty or value is found at the root, return the root
@@ -71,6 +72,7 @@ class Node:
         # so recursively call the function on the right subtree
         return self.search(root.right, value)
 
+    # Inserting a node in a BST
     def insertion(self, root, value):
         
         # Base case: Start from the root, and if we reach a leaf node with a value of NULL, create a node with the
