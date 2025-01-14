@@ -72,7 +72,22 @@ class Node:
         return self.search(root.right, value)
 
     def insertion(self, root, value):
-        pass
+        
+        # Base case: Start from the root, and if we reach a leaf node with a value of NULL, create a node with the
+        # the value we want to insert
+        if root is None:
+            return Node(value)
+        
+        # If the root's value is less than the value we are trying to insert.
+        # go the right of the BST and recursively call the method on the right substree
+        if root.data < value:
+            root.right = self.insertion(root.right, value)
+        # Otherwise, go to the left and recurse on the left subtree
+        else:
+            root.left = self.insertion(root.left, value)
+
+        # Return the updated tree
+        return root
 
     def delete(self, root, value):
         pass
@@ -120,3 +135,14 @@ if __name__=="__main__":
         print("Value was found in the BST")
     else:
         print("Value does not exist in the BST")
+
+    print("\n Inserting 65 in the BST... ")
+    first.insertion(first, 65)
+    print("\nIn-Order Traversal after insertion: ", end=" ")
+    first.inOrderTraversal(first)
+    print("\nPre-Order Traversal after insertion: ", end=" ")
+    first.preOrderTraversal(first)
+    print("\nPost-Order Traversal after insertion: ", end=" ")
+    first.postOrderTraversal(first)
+    print("\nLevel-Order Traversal after insertion: ", end=" ")
+    first.levelOrderTraversal(first)
