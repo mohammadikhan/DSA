@@ -99,6 +99,66 @@ class Node:
         right = self.search(root.right, value)
 
         return left or right
+    
+    def delete(self, root, value):
+
+        # If tree is empty, return NULL
+        if root is None:
+            return None
+        
+        # Perform BFS to find the node we want to remove
+        queue = [root]
+        targetNode = None
+
+        while queue:
+            node = queue.pop(0)
+
+            # If we find the node we want to remove, store it in a variable to be used later to update its value
+            if node.data == value:
+                targetNode = node
+                break
+
+            if node.left:
+                queue.append(node.left)
+
+            if node.right:
+                queue.append(node.right)
+        
+        # If we don't find the node we want to delete, return the tree as it is
+        if targetNode is None:
+            return root
+        
+        # Find the rightmost and deepest node in the tree
+        # Create variables to hold the last node and its parent, initially set to NULL
+        # Perform BFS to find the deepest and rightmost node
+        lastNode, lastParent = None, None
+        queue = [(root, None)]
+
+        while queue:
+            currentNode, parent = queue.pop(0)
+            lastNode = currentNode
+            lastParent = parent
+
+            if currentNode.left:
+                queue.append((currentNode.left, currentNode))
+
+            if currentNode.right:
+                queue.append((currentNode.right, currentNode))
+        
+        # Replace the target nodes data (the node we want to remove) with the data of the last node 
+        targetNode.data = lastNode.data
+
+        # Remove the deepest node by setting the reference to it as NULL
+        if lastParent:
+            if lastParent.left == lastNode:
+                lastParent.left = None
+            else:
+                lastParent.right = None
+        else:
+            return None
+        
+        # Return the updated tree
+        return root
 
 if __name__=="__main__":
 
@@ -142,3 +202,16 @@ if __name__=="__main__":
     # Searching for 2 and 6 in the binary tree
     print("\n\nSearching for 2 in the Binary Tree: ", first.search(first, 2))
     print("Searching for 6 in the Binary Tree: ", first.search(first, 6))
+
+     # Performing Deletion on the binary tree by deleting the value 3
+    print("\nDeleteing 3 from the Binary Tree... ")
+    first.delete(first, 3)
+    print("\nAfter Deletion: ")
+    print("\nIn-Order Traversal after deletion: ", end="")
+    first.inOrderTraversal(first)
+    print("\nPre-Order Traversal after deletion: ", end="")
+    first.preOrderTraversal(first)
+    print("\nPost-Order Traversal after deletion: ", end="")
+    first.postOrderTraversal(first)
+    print("\nLevel-Order Traversal after deletion: ", end="")
+    first.levelOrderTraversal(first)
