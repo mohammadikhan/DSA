@@ -191,6 +191,7 @@ if __name__=="__main__":
     else:
         print("Value does not exist in the BST")
 
+    # Inserting 65 into the BST and perform traversal again
     print("\nInserting 65 in the BST... ")
     first.insertion(first, 65)
     print("\nIn-Order Traversal after insertion: ", end=" ")
@@ -202,6 +203,7 @@ if __name__=="__main__":
     print("\nLevel-Order Traversal after insertion: ", end=" ")
     first.levelOrderTraversal(first)
 
+    # Deleting 50 from the BST and perform traversal again
     print("\n\nDeleting 50 in the BST... ")
     first.delete(first, 50)
     print("\nIn-Order Traversal after deletion: ", end=" ")
