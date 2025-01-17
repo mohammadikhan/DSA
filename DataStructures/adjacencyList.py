@@ -1,5 +1,4 @@
 # Implementation of Graph using Adjacency List:
-
 class Graph:
 
     # Initialize dictionary to represent adjacency list and have the default graph be undirected
