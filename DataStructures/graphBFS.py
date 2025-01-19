@@ -95,14 +95,14 @@ if __name__=="__main__":
     # Display the initial graph
     graph.displayAdjList()
 
-    # Performning BFS on the graph (starting from vertex 2)
+    # Performing BFS on the graph (starting from vertex 2)
     print("\nPerforming BFS on the graph starting from vertex 2: ")
     graph.breadthFirstSearch(2)
 
-    # Performning BFS on the graph (starting from vertex 0)
+    # Performing BFS on the graph (starting from vertex 0)
     print("\nPerforming BFS on the graph starting from vertex 0: ")
     graph.breadthFirstSearch(0)
 
-    # Performning BFS on the graph (starting from vertex 1)
+    # Performing BFS on the graph (starting from vertex 1)
     print("\nPerforming BFS on the graph starting from vertex 1: ")
     graph.breadthFirstSearch(1)
