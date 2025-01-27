@@ -3,7 +3,7 @@
 def bubbleSort(arr):
     
     # Store the length of the list
-    n = len(arr) - 1
+    n = len(arr)
 
     # Loop through the entire list
     # After each pass. the largest element is placed in its correct position
