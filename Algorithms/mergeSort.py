@@ -1,32 +1,66 @@
 # Implementation of Merge Sort
 
-def merge(left, right):
-    result = []
-    i = j = 0
+# Merge function to merge two sorted sublists
+def merge(arr, left, right, mid):
+    
+    # Calculate the lengths of the two sublists
+    leftLen = mid - left + 1
+    rightLen = right - mid
 
-    while i < len(left) and j < len(right):
-        if left[i] <= right[j]:
-            result.append(left[i])
+    # Create temporary lists to store left and right sublists
+    L = [0] * leftLen
+    R = [0] * rightLen
+
+    # Copy the data from given list to the temporary left sublist
+    for i in range(leftLen):
+        L[i] = arr[left + i]
+    
+    # Copy the data from given list to the temporary right sublist
+    for j in range(rightLen):
+        R[j] = arr[mid + 1 + j]
+
+    # Initialize indicies for the left, right and merged list
+    i = j = 0
+    k = left
+
+    # Merge temporary lists back to the given list
+    while i < leftLen and j < rightLen:
+        if L[i] <= R[j]:
+            arr[k] = L[i]
             i += 1
         else:
-            result.append(right[j])
+            arr[k] = R[j]
             j += 1
+        k += 1
 
-    result.extend(left[i:])
-    result.extend(right[j:])
-
-    return result
-
-def mergeSort(arr):
+    # Copy remaining elements of the L temporary list to the given list
+    while i < leftLen:
+        arr[k] = L[i]
+        i += 1
+        k += 1
     
-    if len(arr) <= 1:
-        return arr
-    
-    mid = len(arr) // 2
-    left = mergeSort(arr[:mid])
-    right = mergeSort(arr[mid:])
+    # Copy remaining elements of the R temporary list to the given list
+    while j < rightLen:
+        arr[k] = R[j]
+        j += 1
+        k += 1
 
-    return merge(left, right)
+# Recurisve Merge Sort algorithm to to sort a list
+def mergeSort(arr, left, right):
+    
+    # Base Case: if left index is less than right, the list consits of more than one element
+    if left < right:
+        # Calculate the mid to divide list into two halves
+        mid = (left + right) // 2
+
+        # Recursively call the function on the left half
+        mergeSort(arr, left, mid)
+        
+        # Recursively call the function on the right half
+        mergeSort(arr, mid + 1, right)
+
+        # Merge the sorted halves
+        merge(arr, left, right, mid)
 
 if __name__=="__main__":
     
@@ -35,4 +69,5 @@ if __name__=="__main__":
     print("\n------List before applying the Merge Sort Algorithm------")
     print("\t\t", arr)
     print("\n------List after applying the Merge Sort Algorithm------")
-    print("\t\t", mergeSort(arr))
+    mergeSort(arr, 0, len(arr) - 1)
+    print("\t\t", arr)
